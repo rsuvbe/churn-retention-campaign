@@ -1,0 +1,14 @@
+# Runtime only: what the Streamlit app and the batch-scoring CLI import.
+# Versions match requirements.txt. Used by the Dockerfile.
+catboost==1.2.10
+duckdb==1.5.6
+joblib==1.6.0
+# the pickled calibrator is a src.modeling class, and that module imports lightgbm
+lightgbm==4.7.0
+matplotlib==3.11.2
+numpy==2.5.3
+pandas==3.0.6
+pyyaml==6.0.3
+scikit-learn==1.9.1
+scipy==1.18.1
+streamlit==1.65.0

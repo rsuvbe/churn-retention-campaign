@@ -96,7 +96,8 @@ ranges from about **$21k to $129k per 10k customers**.
 ├── app/streamlit_app.py      # scoring dashboard
 ├── models/                   # trained CatBoost + calibrator + training reference for drift
 ├── tests/                    # 14 tests: metrics, A/B maths, profit curve, PSI, scoring CLI, app
-└── .github/workflows/ci.yml  # runs all SQL queries + tests on every push
+├── Dockerfile                # serving image: dashboard + batch-scoring CLI
+└── .github/workflows/ci.yml  # SQL queries + tests, then image build + smoke tests, on every push
 ```
 
 ### Reproduce
@@ -107,6 +108,18 @@ make all       # DuckDB → notebooks 01–06 → slides → tests
 make app       # Streamlit dashboard
 make score IN=new_customers.csv OUT=scored.csv   # monthly batch scoring
 ```
+
+Or run the trained model in Docker, with no local Python setup:
+
+```bash
+docker build -t churn-scoring .
+docker run --rm -p 8501:8501 churn-scoring            # dashboard on localhost:8501
+docker run --rm -v "$PWD/data:/data" churn-scoring \
+    python -m src.score --input /data/customers.csv --output /data/scored.csv
+```
+
+The image installs only the runtime dependencies (`requirements-serve.txt`) and ships
+the committed model; notebooks, reports and tests stay out of it.
 
 Every random step uses `seed: 42` from the config, every SQL `ORDER BY` / window has
 a deterministic tie-breaker, and all numbers on the slides and in this README come from
@@ -249,6 +262,9 @@ group to keep.
   the campaign list grows from 14.5% to 34% of customers. Without monitoring, the
   budget would balloon silently. In the healthy hold-out month, every feature PSI is ≤ 0.012
   and the score PSI is 0.023.
+* **Packaging:** the `Dockerfile` serves the dashboard and the batch job from one image.
+  CI builds it on every push, scores the full dataset inside it and waits for the
+  dashboard's health check.
 
 ### Limitations & next steps
 
@@ -260,3 +276,7 @@ group to keep.
   persuades, not merely the high-risk ones.
 * **Hyper-parameters:** only tree depth was compared (4/6/8, all within noise); a small
   Optuna search is unlikely to matter here but would on harder real data.
+
+## License
+
+Code: [MIT](LICENSE). Data: Kaggle *Credit Card Customers*, CC0 (Public Domain).
