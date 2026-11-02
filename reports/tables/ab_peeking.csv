@@ -1,0 +1,4 @@
+strategy,false positive rate (A/A),power (true effect)
+Fixed horizon (look once at the end),0.05195,0.93505
+"Naive peeking (10 looks, stop at first p<0.05)",0.1691,0.95895
+"Pocock-style boundary (10 looks, p<0.0157 each)",0.0474,0.8881

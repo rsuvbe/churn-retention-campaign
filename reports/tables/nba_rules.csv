@@ -1,0 +1,9 @@
+driver family,condition,action family,offer,rationale,features
+usage,usage:frequency,Reactivation,Spend challenge: cashback for N transactions in 60 days,Few or falling transactions: the card is not top-of-wallet,"total_trans_ct, total_trans_amt, avg_trans_amt, total_ct_chng_q4_q1, total_amt_chng_q4_q1, months_inactive_12_mon"
+usage,usage:amount,Reactivation,Category cashback on the customer's top spend category,Spend pattern (amount / ticket size) signals the card is losing share of wallet,"total_trans_ct, total_trans_amt, avg_trans_amt, total_ct_chng_q4_q1, total_amt_chng_q4_q1, months_inactive_12_mon"
+usage,usage:inactivity,Reactivation,Re-engagement push + small activation bonus,Inactivity streak: reach out before the account goes dormant,"total_trans_ct, total_trans_amt, avg_trans_amt, total_ct_chng_q4_q1, total_amt_chng_q4_q1, months_inactive_12_mon"
+products,products,Cross-sell,Second product: savings account / debit card / insurance bundle,Few products: low switching cost; another product raises stickiness,"total_relationship_count, trans_ct_per_product"
+balance,balance:zero,Cross-sell,Instalment plan / 0% balance-transfer offer,Never carries a balance: a low-value 'backup' card,"total_revolving_bal, is_zero_revolving, avg_utilization_ratio"
+balance,balance:maxed,Credit,Credit-limit review / debt-restructuring offer,Balance at the limit: possible financial stress or debt moved elsewhere,"total_revolving_bal, is_zero_revolving, avg_utilization_ratio"
+balance,balance:other,Credit,Personalised rate or limit offer,Revolving behaviour adds to risk,"total_revolving_bal, is_zero_revolving, avg_utilization_ratio"
+service,service,Service recovery,Proactive call from a senior agent to resolve open issues,Many contacts with the bank often mean unresolved problems,contacts_count_12_mon

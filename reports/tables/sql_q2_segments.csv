@@ -1,0 +1,24 @@
+dimension,segment,customers,churners,churn_rate,small_sample
+card_category,Platinum,20,5.0,0.25,True
+card_category,Gold,116,21.0,0.181,False
+card_category,Blue,9436,1519.0,0.161,False
+card_category,Silver,555,82.0,0.1477,False
+education_level,Doctorate,451,95.0,0.2106,False
+education_level,Post-Graduate,516,92.0,0.1783,False
+education_level,Unknown,1519,256.0,0.1685,False
+education_level,Uneducated,1487,237.0,0.1594,False
+education_level,Graduate,3128,487.0,0.1557,False
+education_level,College,1013,154.0,0.152,False
+education_level,High School,2013,306.0,0.152,False
+gender,F,5358,930.0,0.1736,False
+gender,M,4769,697.0,0.1462,False
+income_category,$120K +,727,126.0,0.1733,False
+income_category,Less than $40K,3561,612.0,0.1719,False
+income_category,Unknown,1112,187.0,0.1682,False
+income_category,$80K - $120K,1535,242.0,0.1577,False
+income_category,$40K - $60K,1790,271.0,0.1514,False
+income_category,$60K - $80K,1402,189.0,0.1348,False
+marital_status,Unknown,749,129.0,0.1722,False
+marital_status,Single,3943,668.0,0.1694,False
+marital_status,Divorced,748,121.0,0.1618,False
+marital_status,Married,4687,709.0,0.1513,False

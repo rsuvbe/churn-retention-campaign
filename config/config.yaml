@@ -1,0 +1,60 @@
+# =============================================================================
+# Project configuration — every business assumption lives here, not in code.
+# All monetary values are in USD per customer. These are ASSUMPTIONS, not facts
+# from the dataset: the dataset has no revenue or cost columns.
+# =============================================================================
+
+seed: 42
+
+paths:
+  raw_data: data/raw/BankChurners.csv
+  duckdb: data/churn.duckdb
+  processed: data/processed
+  figures: reports/figures
+  tables: reports/tables
+  models: models
+
+model:
+  test_size: 0.2          # hold-out share, stratified by target
+  cv_folds: 5             # stratified K-fold on the training part
+  top_k_share: 0.10       # recall@top-k is reported at top 10% of scores
+
+# -----------------------------------------------------------------------------
+# Business assumptions for the retention campaign (profit curve, Stage 4).
+# -----------------------------------------------------------------------------
+business:
+  # Customer lifetime value lost if a churner actually leaves.
+  # Derived per customer in src/business.py as:
+  #   clv = annual_margin_rate * Total_Trans_Amt * clv_horizon_years
+  #         + revolving_margin_rate * Total_Revolving_Bal * clv_horizon_years
+  # so high-spending customers are worth more. A floor keeps it realistic.
+  annual_interchange_rate: 0.015   # ~1.5% interchange on card spend
+  revolving_margin_rate: 0.15      # net interest margin on revolving balance
+  clv_horizon_years: 2             # how long a retained customer stays on average
+  clv_floor: 150                   # minimum value of any active customer
+
+  contact_cost: 15                 # cost of one retention contact (call + ops)
+  incentive_cost: 40               # offer cost (fee waiver / cashback), paid only if accepted
+  incentive_accept_rate: 0.5       # share of contacted customers who take the incentive
+  retention_success_rate: 0.25     # P(churner stays | contacted). Industry ranges 10–40%.
+
+  # Sensitivity analysis: each assumption is scaled by these multipliers.
+  sensitivity_multipliers: [0.5, 0.75, 1.0, 1.25, 1.5]
+
+# -----------------------------------------------------------------------------
+# A/B test design for the retention campaign (Stage 5). SIMULATION ONLY.
+# -----------------------------------------------------------------------------
+ab_test:
+  alpha: 0.05
+  power: 0.80
+  # Baseline: churn rate among the top-risk customers we will target.
+  # Filled from the model at runtime; this value is a fallback.
+  baseline_churn_rate_fallback: 0.45
+  # Smallest relative reduction in churn the business cares about.
+  mde_relative: 0.15
+  # "True" effect injected into the simulation (relative churn reduction).
+  simulated_true_effect_relative: 0.20
+  n_simulations: 2000
+  n_bootstrap: 5000
+  peeking_checks: 10            # how many interim looks in the peeking demo
+  peeking_simulations: 20000    # more runs here: the boundary is a tail quantile

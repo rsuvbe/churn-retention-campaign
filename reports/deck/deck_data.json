@@ -1,0 +1,354 @@
+{
+  "n_customers": 10127,
+  "n_test": 2026,
+  "churn_rate": 0.1607,
+  "n_churners": 1627,
+  "top_k": 10,
+  "model": {
+    "roc_auc": 0.9932238954461176,
+    "pr_auc": 0.9695696471398432,
+    "recall_top_k": 0.6215384615384615,
+    "precision_top_k": 0.9950738916256158,
+    "rules_recall_top_k": 0.4184615384615384
+  },
+  "activity": {
+    "labels": [
+      "Dormant",
+      "Low activity",
+      "Declining",
+      "Regular",
+      "Highly active"
+    ],
+    "share_base": [
+      0.116,
+      0.129,
+      0.148,
+      0.366,
+      0.241
+    ],
+    "share_churners": [
+      0.333,
+      0.224,
+      0.182,
+      0.238,
+      0.022
+    ],
+    "churn_rate": [
+      0.46,
+      0.28,
+      0.199,
+      0.105,
+      0.014
+    ]
+  },
+  "hypotheses": [
+    {
+      "hypothesis": "H1: churners show a larger drop in transaction count (Q4 vs Q1)",
+      "short_name": "Usage decline",
+      "slide_stat": "36% vs 8% churn",
+      "slide_text": "Falling usage is the earliest warning sign",
+      "actionable": true
+    },
+    {
+      "hypothesis": "H2: customers with 1-2 products churn more than those with 3+",
+      "short_name": "Few products",
+      "slide_stat": "27% vs 13% churn",
+      "slide_text": "Customers with 1\u20132 products vs 3+; a second product makes them stickier",
+      "actionable": true
+    },
+    {
+      "hypothesis": "H3: customers with zero revolving balance churn more",
+      "short_name": "No revolving balance",
+      "slide_stat": "36% vs 10% churn",
+      "slide_text": "Card is a 'backup card' for customers who never carry a balance",
+      "actionable": true
+    },
+    {
+      "hypothesis": "H4: customers inactive 3+ months churn more",
+      "short_name": "3+ inactive months",
+      "slide_stat": "22% vs 11% churn",
+      "slide_text": "Inactivity raises risk; trigger reactivation at month 2",
+      "actionable": true
+    },
+    {
+      "hypothesis": "H5: churners differ in age from retained customers",
+      "short_name": "Age",
+      "slide_stat": "Cohen's d = 0.05",
+      "slide_text": "Age barely differs between leavers and stayers; don't target by age",
+      "actionable": false
+    }
+  ],
+  "gains": {
+    "shares": [
+      0.0,
+      0.05,
+      0.1,
+      0.15,
+      0.2,
+      0.25,
+      0.3,
+      0.35,
+      0.4,
+      0.45,
+      0.5,
+      0.55,
+      0.6,
+      0.65,
+      0.7,
+      0.75,
+      0.8,
+      0.85,
+      0.9,
+      0.95,
+      1.0
+    ],
+    "model": [
+      0.0,
+      0.31076923076923074,
+      0.6215384615384615,
+      0.8830769230769231,
+      0.9569230769230769,
+      0.9938461538461538,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "rules": [
+      0.0,
+      0.26153846153846155,
+      0.41846153846153844,
+      0.5292307692307693,
+      0.5692307692307692,
+      0.6123076923076923,
+      0.6707692307692308,
+      0.7292307692307692,
+      0.7846153846153846,
+      0.8153846153846154,
+      0.8369230769230769,
+      0.8584615384615385,
+      0.8892307692307693,
+      0.9138461538461539,
+      0.9323076923076923,
+      0.9415384615384615,
+      0.96,
+      0.9753846153846154,
+      0.9815384615384616,
+      0.9907692307692307,
+      1.0
+    ],
+    "random": [
+      0.0,
+      0.05,
+      0.1,
+      0.15,
+      0.2,
+      0.25,
+      0.3,
+      0.35,
+      0.4,
+      0.45,
+      0.5,
+      0.55,
+      0.6,
+      0.65,
+      0.7,
+      0.75,
+      0.8,
+      0.85,
+      0.9,
+      0.95,
+      1.0
+    ]
+  },
+  "profit_curve": {
+    "shares": [
+      0.0,
+      0.025,
+      0.05,
+      0.075,
+      0.1,
+      0.125,
+      0.15,
+      0.175,
+      0.2,
+      0.225,
+      0.25,
+      0.275,
+      0.3,
+      0.325,
+      0.35,
+      0.375,
+      0.4,
+      0.425,
+      0.45,
+      0.475,
+      0.5,
+      0.525,
+      0.55,
+      0.575,
+      0.6,
+      0.625,
+      0.65,
+      0.675,
+      0.7,
+      0.725,
+      0.75,
+      0.775,
+      0.8,
+      0.825,
+      0.85,
+      0.875,
+      0.9,
+      0.925,
+      0.95,
+      0.975,
+      1.0
+    ],
+    "profit_per_10k": [
+      0.0,
+      40471.23642645609,
+      59902.03603158938,
+      65635.27887462985,
+      66774.5310957552,
+      67206.41658440279,
+      67059.08193484701,
+      65796.8534057256,
+      60729.676702862824,
+      56056.31786771967,
+      49045.175222112564,
+      40604.89881539983,
+      31794.434846989167,
+      23352.480256663403,
+      14542.01628825274,
+      5731.552319842079,
+      -2906.1574531095503,
+      -11716.621421520213,
+      -20527.08538993087,
+      -29164.795162882503,
+      -37975.25913129316,
+      -46785.72309970383,
+      -55423.43287265545,
+      -64233.89684106612,
+      -73044.36080947677,
+      -81682.07058242841,
+      -90492.53455083906,
+      -99302.99851924973,
+      -107940.70829220135,
+      -116751.17226061202,
+      -125561.63622902268,
+      -134199.3460019743,
+      -143009.80997038496,
+      -151647.5197433366,
+      -160457.98371174725,
+      -169268.4476801579,
+      -177906.15745310954,
+      -186716.6214215202,
+      -195527.08538993084,
+      -204164.79516288248,
+      -212975.25913129313
+    ]
+  },
+  "decision": {
+    "share_contacted": 0.1446199407699901,
+    "profit_per_10k": 67663.7216189536,
+    "churners_reached_share": 0.8276923076923077,
+    "everyone_profit_per_10k": -212975.2591312932,
+    "thr05_profit_per_10k": 64033.859822309976
+  },
+  "sensitivity": {
+    "labels": [
+      "retention_success_rate",
+      "clv (value of a customer)",
+      "contact_cost",
+      "incentive_cost"
+    ],
+    "low": [
+      21399.685340572574,
+      21399.685340572574,
+      79023.50691016785,
+      83319.06465942749
+    ],
+    "high": [
+      129359.14980256664,
+      129359.14980256664,
+      60569.61994077002,
+      58743.36130306025
+    ],
+    "low_share": [
+      0.049,
+      0.049,
+      0.156,
+      0.175
+    ],
+    "high_share": [
+      0.175,
+      0.175,
+      0.073,
+      0.073
+    ],
+    "base": 68272.59378084898
+  },
+  "ab": {
+    "mde": 0.15,
+    "n_per_arm": 108,
+    "p_control": 0.91020569817159,
+    "fpr_fixed": 0.05195,
+    "fpr_peeking": 0.1691,
+    "fpr_pocock": 0.0474
+  },
+  "nba_primary": {
+    "Reactivation": 292,
+    "Service recovery": 1
+  },
+  "nba_secondary": {
+    "instalment offer": 103,
+    "second product": 69,
+    "credit offer": 62,
+    "service call": 23,
+    "spend challenge": 1
+  },
+  "robust": {
+    "band_low": 0.0710760118460019,
+    "band_high": 0.1776900296150049,
+    "break_even_success": 0.1069848650060696,
+    "assumed_success": 0.25
+  },
+  "shap_top": [
+    {
+      "feature": "total_trans_ct",
+      "mean_abs_shap": 2.209969892138442
+    },
+    {
+      "feature": "total_trans_amt",
+      "mean_abs_shap": 1.1098640559454562
+    },
+    {
+      "feature": "total_revolving_bal",
+      "mean_abs_shap": 0.9876975335922432
+    },
+    {
+      "feature": "avg_trans_amt",
+      "mean_abs_shap": 0.7871220187422044
+    },
+    {
+      "feature": "total_ct_chng_q4_q1",
+      "mean_abs_shap": 0.5345602197566918
+    },
+    {
+      "feature": "months_inactive_12_mon",
+      "mean_abs_shap": 0.500969219728587
+    }
+  ]
+}

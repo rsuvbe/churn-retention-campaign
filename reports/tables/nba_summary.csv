@@ -1,0 +1,4 @@
+action_family,offer,customers,avg_churn_prob,avg_clv,total_expected_profit
+Reactivation,Spend challenge: cashback for N transactions in 60 days,189,0.9213878511583523,344.59285714285716,7467.215435928748
+Reactivation,Category cashback on the customer's top spend category,103,0.8889510475671857,432.0314563106796,5547.088600453636
+Service recovery,Proactive call from a senior agent to resolve open issues,1,0.986007795927236,150.0,1.975292347271349

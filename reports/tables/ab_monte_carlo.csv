@@ -1,0 +1,4 @@
+scenario,rejection rate,should be
+true effect = MDE (15%),0.798,≈ 80% (power)
+true effect = 20%,0.945,> 80%
+A/A test (no effect),0.054,≈ 5% (α)

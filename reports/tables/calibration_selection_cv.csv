@@ -1,0 +1,4 @@
+method,brier_mean,brier_std,ece_mean,ece_std
+isotonic,0.01979,0.00211,0.00483,0.00226
+none,0.02012,0.00203,0.00914,0.00274
+platt,0.01969,0.00202,0.00591,0.00274

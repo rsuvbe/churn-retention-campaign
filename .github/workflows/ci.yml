@@ -1,0 +1,29 @@
+name: tests
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - name: Install pinned dependencies
+        run: pip install -r requirements-lock.txt
+      - name: Build DuckDB and check every SQL query runs
+        run: |
+          python -c "from src.data import build_duckdb; build_duckdb()"
+          python -c "
+          from pathlib import Path
+          from src.data import run_sql_file
+          for q in sorted(Path('sql').glob('0[1-9]_*.sql')):
+              df = run_sql_file(q.stem); assert len(df), q
+              print(q.stem, len(df), 'rows')
+          "
+      - name: Unit tests (+ app and scoring smoke tests on the committed model)
+        run: python -m pytest -q tests

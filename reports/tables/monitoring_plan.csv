@@ -1,0 +1,9 @@
+area,metric,frequency,alert threshold,action
+Input data,PSI per feature vs training,"monthly, before scoring",> 0.25 on any top-10 SHAP feature,investigate source; hold campaign size at last month's level
+Input data,missing / out-of-range values,every batch,any required column missing,stop the job (scoring CLI raises)
+Model output,PSI of churn score,monthly,> 0.25,review with business before sending the list
+Model output,share of customers selected,monthly,> 1.5x last 3-month average,cap budget; check drift report
+Model quality,"ROC-AUC, PR-AUC on matured labels","monthly, 90-day lag",PR-AUC drop > 0.05,retrain on the latest 12 months
+Model quality,calibration gap by score band,"monthly, 90-day lag",> 10 p.p. two months running,refit calibrator on recent OOF scores
+Business,churn: treatment vs control hold-out,every campaign wave,effect CI includes 0,revisit offers; feed result into config
+Business,cost per saved customer,every campaign wave,> average CLV of saved customers,shrink campaign / change offer
